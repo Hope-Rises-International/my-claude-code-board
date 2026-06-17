@@ -5,9 +5,9 @@ Before doing ANY work in this session:
 1. **Hard-pull this repo** so you are on the latest canonical state:
        git pull origin main
 2. **Re-read this CLAUDE.md top to bottom.** It may have changed since your last session.
-3. **Re-read the canonical rails** that govern every HRI architect and builder session:
-       gh api "repos/Hope-Rises-International/hri-template-repository/contents/RESTRUCTURE-RULES.md?ref=main" --jq '.content' | base64 -d
-   (Architect sessions: also read hri-architect/CLAUDE.md and its RESTRUCTURE-RULES mirror.)
+3. **Pull the canonical standards once — one shallow clone, then read from it** (this is what realizes any new or changed standard automatically; the standards are single canonical copies, no local mirror to drift):
+       rm -rf /tmp/hri-template && gh repo clone Hope-Rises-International/hri-template-repository /tmp/hri-template -- --depth 1
+   **Fail closed:** this clone is the ONLY source of the rails (no mirror fallback). If it fails or `/tmp/hri-template/RESTRUCTURE-RULES.md` is absent, **STOP** and tell the operator — do not work without the rails. Then from `/tmp/hri-template`: **read `RESTRUCTURE-RULES.md` every session** (the canonical rails). Before writing **any** integration code, also read `hri-integration-standards.md` + `hri-stack-learnings.md` there. The session-start / session-end / comprehension protocols live in the same clone. If you see a standards doc you don't recognize, read it and tell the operator. (Architect sessions also read `hri-architect/CLAUDE.md`, the Operating Manual.)
 
 **Mid-session:** do a SOFT check only —
        git fetch && git status -sb
@@ -76,14 +76,7 @@ Do NOT create a local `learnings.md` or `hri-stack-learnings.md` in this repo. I
 
 **The full protocol lives in one place:** `session-start-protocol.md` in `hri-template-repository`.
 
-At session start, fetch and follow it:
-
-```bash
-gh api /repos/Hope-Rises-International/hri-template-repository/contents/session-start-protocol.md \
-  --jq '.content' | base64 -d > /tmp/session-start-protocol.md
-```
-
-Then read `/tmp/session-start-protocol.md` and execute all steps.
+At session start, read `/tmp/hri-template/session-start-protocol.md` (from the session-start clone) and execute all steps.
 
 ---
 
@@ -91,13 +84,6 @@ Then read `/tmp/session-start-protocol.md` and execute all steps.
 
 **The full protocol lives in one place:** `session-end-protocol.md` in `hri-template-repository`.
 
-At session close, fetch and follow it:
-
-```bash
-gh api /repos/Hope-Rises-International/hri-template-repository/contents/session-end-protocol.md \
-  --jq '.content' | base64 -d > /tmp/session-end-protocol.md
-```
-
-Then read `/tmp/session-end-protocol.md` and execute all steps.
+At session close, read `/tmp/hri-template/session-end-protocol.md` (from the session-start clone) and execute all steps.
 
 This ensures every repo uses the latest protocol without needing per-repo updates.
