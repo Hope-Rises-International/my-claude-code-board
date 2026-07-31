@@ -19,16 +19,13 @@ This block is mandatory and identical across every HRI repo. If it is missing fr
 
 # Claude Code — Project Instructions
 
-> **Repository Visibility:** All HRI repos MUST be set to **Private**.
-> When creating a new repo from this template, verify the visibility
-> is set to Private in the GitHub creation dialog. Public repos risk
-> exposing hardcoded credentials, Sheet IDs, and internal email addresses.
+**Personal repo** (remote is currently on the HRI org, which is wrong for a personal repo and is a
+known open item). Not an HRI project: do not clone the HRI rails or run HRI session protocols.
 
-## About this project
+## What this is
 
-<!-- Replace this section with a brief description of what this project is,
-     how it's deployed, and what systems it connects to. Keep it to 5-10 lines.
-     This is the first thing a new session reads — make it count. -->
+A static archive of Claude Code patterns and reference material, collected up to April 2026. Nothing
+here is live and nothing runs. It is read-only reference; treat it as a snapshot, not current guidance.
 
 ## Authentication
 
