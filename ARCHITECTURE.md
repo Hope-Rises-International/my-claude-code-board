@@ -136,7 +136,7 @@ This repo does not run continuously — it is a reference and protocol store. Ho
    ```bash
    gh api /repos/Hope-Rises-International/hri-template-repository/contents/session-end-protocol.md \
      --jq '.content' | base64 -d > /tmp/canonical-session-end.md
-   diff /Users/ccalvert/claude-work/my-claude-code-board/session-end-protocol.md /tmp/canonical-session-end.md
+   diff /Users/ccalvert/my-ccw/my-claude-code-board/session-end-protocol.md /tmp/canonical-session-end.md
    ```
 2. If the local copies are stale, overwrite them with the canonical versions and commit.
 3. As a rule: always fetch from `hri-template-repository` at session start rather than relying on local copies. The `CLAUDE.md` instructions do this correctly; verify sessions are following those instructions.
@@ -219,9 +219,9 @@ gh api /repos/Hope-Rises-International/hri-template-repository/contents/hri-stac
   --jq '.content' | base64 -d > /tmp/hri-stack-learnings.md
 
 # Compare against local copies
-diff /Users/ccalvert/claude-work/my-claude-code-board/session-start-protocol.md /tmp/session-start-protocol.md
-diff /Users/ccalvert/claude-work/my-claude-code-board/session-end-protocol.md /tmp/session-end-protocol.md
-diff /Users/ccalvert/claude-work/my-claude-code-board/hri-stack-learnings.md /tmp/hri-stack-learnings.md
+diff /Users/ccalvert/my-ccw/my-claude-code-board/session-start-protocol.md /tmp/session-start-protocol.md
+diff /Users/ccalvert/my-ccw/my-claude-code-board/session-end-protocol.md /tmp/session-end-protocol.md
+diff /Users/ccalvert/my-ccw/my-claude-code-board/hri-stack-learnings.md /tmp/hri-stack-learnings.md
 ```
 
 ---
