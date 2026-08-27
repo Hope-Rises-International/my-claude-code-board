@@ -57,7 +57,7 @@ The `session-start.sh` hook installs `clasp` (Google Apps Script CLI) if missing
 | Credential | Location | Purpose |
 |------------|----------|---------|
 | HRI OAuth ADC credentials | `~/.config/gcloud/application_default_credentials.json` | Google Sheets API v4 calls to the Project Status Tracker (`1KD7Zds9WlIQRubD2z7r2SmcTIWbIQCQtkfE713P88Ng`). Scopes required: `cloud-platform` + `drive` (full). Use HRI custom OAuth client file (`hri-oauth-client.json`), not gcloud default client — Google blocks the `drive` scope on the default client. |
-| Sheets Bridge API key | Hardcoded in session-start.sh and protocol files | `b3317d76-a5f3-4657-9881-6f087455173d` — authenticates POST requests to the Apps Script bridge endpoint. Sent as `"apiKey"` field in the JSON body. |
+| Sheets Bridge API key | Hardcoded in session-start.sh and protocol files | `[removed — retired Sheets Bridge key]` — authenticates POST requests to the Apps Script bridge endpoint. Sent as `"apiKey"` field in the JSON body. |
 | GitHub CLI (`gh`) auth | Local `gh` auth state (`~/.config/gh/`) | Used to fetch protocol files from `hri-template-repository` and to push `hri-stack-learnings.md` updates via the GitHub Contents API. |
 | GCP service account (for other HRI repos) | Impersonation, not key file | `hri-sfdc-sync@hri-receipt-automation.iam.gserviceaccount.com` — referenced in CLAUDE.md as the standard impersonation pattern for repos that call Sheets, Cloud Run, Salesforce, or Secret Manager. This board itself does not use this SA directly. |
 | `REPO_OWNER` env var | `.claude/settings.json` | Set to `bsimmons3rd`. Used by `push-guard.sh` to compare against `GH_USER` from the developer's global settings and block accidental cross-owner pushes. |
@@ -154,7 +154,7 @@ Replace placeholder values with actuals, then run:
 ```bash
 PAYLOAD=$(cat <<'EOF'
 {
-  "apiKey": "b3317d76-a5f3-4657-9881-6f087455173d",
+  "apiKey": "[removed — retired Sheets Bridge key]",
   "sheetId": "115R3nf55qL23dftoZQg3jOQh5Drqvj-Cd08lsyR_Z2g",
   "operations": [
     {
@@ -254,7 +254,7 @@ diff /Users/ccalvert/my-ccw/my-claude-code-board/hri-stack-learnings.md /tmp/hri
 
 | Value | Where Found | What It Is |
 |-------|------------|------------|
-| `b3317d76-a5f3-4657-9881-6f087455173d` | `session-start.sh`, `session-end-protocol.md`, `session-start-protocol.md` | Sheets Bridge API key — authenticates POST requests to the Apps Script bridge |
+| `[removed — retired Sheets Bridge key]` | `session-start.sh`, `session-end-protocol.md`, `session-start-protocol.md` | Sheets Bridge API key — authenticates POST requests to the Apps Script bridge |
 | `115R3nf55qL23dftoZQg3jOQh5Drqvj-Cd08lsyR_Z2g` | `session-start.sh`, `session-end-protocol.md`, `session-start-protocol.md` | HRI Systems Registry Google Sheet ID |
 | `1KD7Zds9WlIQRubD2z7r2SmcTIWbIQCQtkfE713P88Ng` | `session-end-protocol.md` | Project Status Tracker Google Sheet ID |
 | `https://script.google.com/macros/s/AKfycbzen_jFFDULJQhj7rPK8khEopSRR1YIusTDqI7dpQPrefdi7Lxcv_J5UimlolVg49i-vQ/exec` | `session-start.sh`, `session-end-protocol.md`, `session-start-protocol.md` | Apps Script Sheets Bridge endpoint URL |
